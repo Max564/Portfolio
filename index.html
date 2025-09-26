@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Maxence Bordas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+    :root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --accent: #06b6d4;
+  --text: #22223b;
+  --text-muted: #64748b;
+  --surface: #f8fafc;
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --shadow: 0 10px 20px rgba(0,0,0,0.15);
+  --radius: 16px;
+  --transition: all 0.3s ease;
+    }
+
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0 80%);
+  color: var(--text);
+  line-height: 1.7;
+  scroll-behavior: smooth;
+    }
+
+    /* Header */
+    header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    }
+    nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  padding: 1rem 0;
+    }
+    nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin-left: auto;
+    }
+    nav a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    }
+    nav a:hover {
+    color: var(--primary);
+    background: rgba(99,102,241,0.1);
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px; left: 50%;
+      width: 0; height: 2px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after, nav a.active::after {
+      width: 70%;
+    }
+
+    /* Sections */
+    section {
+      min-height: 100vh;
+      padding: 7rem 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    h1, h2 {
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--primary-dark);
+    }
+    p {
+      max-width: 900px;
+      margin: 0 auto 1.2rem;
+      color: var(--text-muted);
+    }
+
+    /* Cards */
+    .card {
+  background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 1rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card-list {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      max-width: 1000px;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    ul {
+      list-style: disc;
+      margin: 1rem auto;
+      padding-left: 1.5rem;
+      max-width: 700px;
+      text-align: left;
+      color: var(--text-muted);
+    }
+
+    /* Boutons */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      margin-top: 1rem;
+    }
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--primary);
+    }
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Contact */
+    .contact-info {
+      margin-top: 2rem;
+    }
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+    .socials {
+      margin-top: 1rem;
+    }
+    .socials a {
+      margin: 0 0.5rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .socials a:hover {
+      color: var(--accent);
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 0.8s forwards;
+    }
+    @keyframes fadeIn {
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Accueil</a></li>
+        <li><a href="#stage">Stage</a></li>
+        <li><a href="#project">Projet</a></li>
+        <li><a href="#veille">Veille info</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Accueil -->
+  <section id="home">
+    <div class="fade-in">
+      <h1>Maxence Bordas</h1>
+      <p>Étudiant en <strong>BTS Systèmes Informatiques aux Organisations</strong> au lycée Bahuet à Brive.
+        Passionné par le <strong>développement web</strong>, je conçois des solutions modernes et performantes.</p>
+  <a href="#" class="btn btn-primary" id="cv-popup-btn">Mon CV</a>
+  <a href="CV.pdf" class="btn btn-secondary" download>Télécharger CV</a>
+    </div>
+  </section>
+<!-- Popup CV -->
+<div id="cv-popup" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:2000;align-items:center;justify-content:center;">
+    <button id="close-cv-popup" style="position:absolute;top:1rem;right:1rem;font-size:1.5rem;background:none;border:none;cursor:pointer;">&times;</button>
+    <h2 style="margin-bottom:1rem;color:#22223b;">Mon CV</h2>
+    <img src="images/CV.png" alt="CV" style="max-width:70vw;max-height:80vh;border-radius:8px;box-shadow:0 2px 16px rgba(0,0,0,0.12);" />
+  </div>
+</div>
+
+  <!-- Stage -->
+  <section id="stage">
+    <h2>Mes stages</h2>
+    <div class="card-list fade-in">
+      <div class="card"><strong>Ingram Micro</strong> (Brive) – Automatisation du chauffage avec Home Assistant.</div>
+      <div class="card"><strong>Ingram Micro</strong> (Brive) – Projets avec Raspberry Pi.</div>
+      <div class="card"><strong>Caum</strong> (Saint-Pantaléon-de-Larche) – Réparation de câbles fibre optique.</div>
+    </div>
+  </section>
+
+  <!-- Projets -->
+  <section id="project">
+    <h2>Projet réalisé</h2>
+    <div class="card fade-in">
+      <p>Projet en collaboration avec <strong>Samsung</strong> : mise en place et configuration de <strong>serveurs NAS</strong> pour optimiser la gestion des données.</p>
+    </div>
+  </section>
+
+  <!-- Veille -->
+  <section id="veille">
+    <h2>Veille technologique</h2>
+    <div class="card-list fade-in">
+      <div class="card"><strong>Cybersécurité</strong> (Certification Cisco obtenue).</div>
+      <div class="card"><strong>Réseaux informatiques</strong> et infrastructures modernes.</div>
+      <div class="card"><strong>Cloud computing</strong> et solutions hybrides.</div>
+      <div class="card"><strong>IoT</strong> et systèmes connectés.</div>
+      <div class="card"><strong>DevOps</strong> et automatisation des déploiements.</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+  <h2 style="margin-bottom:0.2rem;">Contact</h2>
+  <div class="card fade-in" style="max-width:500px;margin:auto;">
+  <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:0.3rem;margin-top:0;">Un projet, une question ? Contactez-moi simplement :</p>
+    <div style="margin-top:0.2rem;display:flex;justify-content:center;gap:1.5rem;">
+        <a href="mailto:maxence.bordas19100@gmail.com" target="_blank" title="Email" style="padding:0 0.5rem;">
+          <svg height="28" width="28" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/maxence-brds-a9b3ab386/" target="_blank" title="LinkedIn" style="padding:0 0.5rem;">
+          <svg height="28" width="28" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:middle;"><path d="M1.146 1.146C.417 1.875.417 3.125 1.146 3.854c.729.729 1.979.729 2.708 0 .729-.729.729-1.979 0-2.708-.729-.729-1.979-.729-2.708 0zM.5 5.5h3v10h-3v-10zm4.5 0h3v1.354c.417-.729 1.25-1.354 2.5-1.354 2.083 0 2.5 1.25 2.5 3.083v7.917h-3v-7.083c0-.417-.083-1.25-1.25-1.25-1.167 0-1.25.833-1.25 1.25v7.083h-3v-10z"></path></svg>
+        </a>
+        <a href="https://github.com/Max564" target="_blank" title="GitHub" style="padding:0 0.5rem;">
+          <svg height="28" width="28" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:middle;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.6-.18-3.29-.8-3.29-3.55 0-.78.28-1.42.74-1.92-.07-.18-.32-.91.07-1.9 0 0 .6-.19 1.97.73.57-.16 1.18-.24 1.79-.24.61 0 1.22.08 1.79.24 1.37-.92 1.97-.73 1.97-.73.39.99.14 1.72.07 1.9.46.5.74 1.14.74 1.92 0 2.76-1.69 3.37-3.3 3.55.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+        </a>
+      </div>
+    </div>
+</body>
+<script>
+// Change active link on scroll or click
+const navLinks = document.querySelectorAll('nav a');
+const sections = Array.from(document.querySelectorAll('section'));
+
+function activateLink() {
+  let index = sections.length - 1;
+  for (let i = 0; i < sections.length; i++) {
+    const rect = sections[i].getBoundingClientRect();
+    if (rect.top <= 80) index = i;
+  }
+  navLinks.forEach(link => link.classList.remove('active'));
+  navLinks[index].classList.add('active');
+}
+
+window.addEventListener('scroll', activateLink);
+navLinks.forEach((link, i) => {
+  link.addEventListener('click', () => {
+    setTimeout(activateLink, 300);
+  });
+});
+</script>
+</html>
+<script>
+// Popup CV
+const cvBtn = document.getElementById('cv-popup-btn');
+const cvPopup = document.getElementById('cv-popup');
+const closeCv = document.getElementById('close-cv-popup');
+cvBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  cvPopup.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
+closeCv.addEventListener('click', () => {
+  cvPopup.style.display = 'none';
+  document.body.style.overflow = '';
+});
+</script>
+</html>
